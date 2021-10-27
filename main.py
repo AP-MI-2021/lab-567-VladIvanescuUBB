@@ -6,5 +6,5 @@ def main():
     run_all_tests()
     run_menu([])
 
-# comment to test git stuff
+
 main()

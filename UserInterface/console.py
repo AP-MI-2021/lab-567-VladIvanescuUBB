@@ -1,7 +1,7 @@
 from Domain.rezervare import to_string
 from Logic.CRUD import adauga_rezervare, sterge_rezervare, modifica_rezervare
 
-#print menu function
+
 def print_menu():
     print("1. Adaugare rezervare")
     print("2. Stergere rezervare")
