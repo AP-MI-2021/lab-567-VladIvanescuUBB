@@ -1,4 +1,4 @@
-from Domain.rezervare import get_ID, get_nume, get_clasa, get_pret, get_checkin_facut, to_string
+from Domain.rezervare import get_ID, get_nume, get_clasa, get_pret, get_checkin_facut
 from Logic.CRUD import adauga_rezervare, get_by_ID, sterge_rezervare, modifica_rezervare
 
 

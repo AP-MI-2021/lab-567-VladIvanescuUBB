@@ -68,4 +68,3 @@ def modifica_rezervare(ID, nume, clasa, pret, checkin_facut, lista):
         else:
             lista_noua.append(rezervare)
     return lista_noua
-

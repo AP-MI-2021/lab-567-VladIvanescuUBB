@@ -10,3 +10,4 @@ def run_all_tests():
     test_modifica_rezervare()
     test_trece_clasa_superioara()
     test_ieftinire()
+    
