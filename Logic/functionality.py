@@ -12,3 +12,18 @@ def trece_clasa_superioara(lista, nume):
             elif rezervare["clasa"] == "economy plus":
                 rezervare["clasa"] = "business"
     return lista
+
+
+def ieftinire(lista, procentaj):
+    """
+    functia are ca efect ieftinirea tuturor rezervărilor la care s-a făcut checkin cu un procentaj.
+    :param lista: lista de rezervari
+    :param procentaj: procentajul cu care se vor ieftini rezervarile (float)
+    :return: lista de rezervari modificata corespunzator
+    """
+    if procentaj < 0 or procentaj > 100:
+        raise ValueError("Procentajul trebuie sa fie intre 0 si 100!")
+    for rezervare in lista:
+        if rezervare["checkin_facut"] == "da":
+            rezervare["pret"] = rezervare["pret"] - ((rezervare["pret"] * procentaj) / 100)
+    return lista
