@@ -27,3 +27,25 @@ def ieftinire(lista, procentaj):
         if rezervare["checkin_facut"] == "da":
             rezervare["pret"] = rezervare["pret"] - ((rezervare["pret"] * procentaj) / 100)
     return lista
+
+
+def pret_max_clasa(lista, clasa):
+    """
+    functia determina prețul maxim pentru o clasă.
+    :param lista: lista de rezervari
+    :param clasa: string
+    :return: prețul maxim pentru clasa data.
+    """
+    for rezervare in sorted(lista, key=lambda rez: rez["pret"], reverse=True):
+        if rezervare["clasa"] == clasa:
+            return rezervare["pret"]
+    return None
+
+
+def ordonare_descrescator_pret(lista):
+    """
+    functia ordoneaza rezervarile din lista descrescator dupa pret
+    :param lista: lista de rezervari
+    :return: lista ordonata descrescator dupa pretul rezervarilor
+    """
+    return sorted(lista, key=lambda rez: rez["pret"], reverse=True)

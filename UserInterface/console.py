@@ -1,6 +1,6 @@
 from Domain.rezervare import to_string
 from Logic.CRUD import adauga_rezervare, sterge_rezervare, modifica_rezervare
-from Logic.functionality import trece_clasa_superioara, ieftinire
+from Logic.functionality import trece_clasa_superioara, ieftinire, pret_max_clasa, ordonare_descrescator_pret
 
 
 def print_menu():
@@ -10,6 +10,8 @@ def print_menu():
     print("a. Afisare rezervari")
     print("4. Trecerea tuturor rezervărilor făcute pe un nume citit la o clasă superioară")
     print("5. Ieftinirea tuturor rezervărilor la care s-a făcut checkin cu un procentaj citit")
+    print("6. Determinarea prețului maxim pentru fiecare clasă.")
+    print("7. Ordonarea rezervărilor descrescător după preț.")
     print("x. Iesire")
 
 
@@ -66,6 +68,12 @@ def ui_ieftinire(lista):
         print("Eroare! ", ve)
 
 
+def ui_pret_max_clasa(lista):
+    print("economy: ", pret_max_clasa(lista, "economy"))
+    print("economy plus: ", pret_max_clasa(lista, "economy plus"))
+    print("business: ", pret_max_clasa(lista, "business"))
+
+
 def run_menu(lista):
     while True:
         print_menu()
@@ -82,6 +90,10 @@ def run_menu(lista):
             lista = ui_trece_clasa_superioara(lista)
         elif optiune == "5":
             lista = ui_ieftinire(lista)
+        elif optiune == "6":
+            ui_pret_max_clasa(lista)
+        elif optiune == "7":
+            lista = ordonare_descrescator_pret(lista)
         elif optiune == "x":
             break
         else:
