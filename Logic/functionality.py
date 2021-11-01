@@ -1,3 +1,6 @@
+from Domain.rezervare import get_nume, get_clasa, get_checkin_facut, get_pret
+
+
 def trece_clasa_superioara(lista, nume):
     """
     functia are ca efect trecerea tuturor rezervărilor făcute pe un nume dat la o clasă superioară
@@ -6,11 +9,11 @@ def trece_clasa_superioara(lista, nume):
     :return: lista de rezervari modificata corespunzator
     """
     for rezervare in lista:
-        if rezervare["nume"] == nume:
-            if rezervare["clasa"] == "economy":
-                rezervare["clasa"] = "economy plus"
-            elif rezervare["clasa"] == "economy plus":
-                rezervare["clasa"] = "business"
+        if get_nume(rezervare) == nume:
+            if get_clasa(rezervare) == "economy":
+                rezervare[2] = "economy plus"
+            elif rezervare[2] == "economy plus":
+                rezervare[2] = "business"
     return lista
 
 
@@ -24,8 +27,8 @@ def ieftinire(lista, procentaj):
     if procentaj < 0 or procentaj > 100:
         raise ValueError("Procentajul trebuie sa fie intre 0 si 100!")
     for rezervare in lista:
-        if rezervare["checkin_facut"] == "da":
-            rezervare["pret"] = rezervare["pret"] - ((rezervare["pret"] * procentaj) / 100)
+        if get_checkin_facut(rezervare) == "da":
+            rezervare[3] = rezervare[3] - ((rezervare[3] * procentaj) / 100)
     return lista
 
 
@@ -36,9 +39,9 @@ def pret_max_clasa(lista, clasa):
     :param clasa: string
     :return: prețul maxim pentru clasa data.
     """
-    for rezervare in sorted(lista, key=lambda rez: rez["pret"], reverse=True):
-        if rezervare["clasa"] == clasa:
-            return rezervare["pret"]
+    for rezervare in sorted(lista, key=lambda rez: get_pret(rez), reverse=True):
+        if get_clasa(rezervare) == clasa:
+            return get_pret(rezervare)
     return None
 
 
@@ -48,4 +51,4 @@ def ordonare_descrescator_pret(lista):
     :param lista: lista de rezervari
     :return: lista ordonata descrescator dupa pretul rezervarilor
     """
-    return sorted(lista, key=lambda rez: rez["pret"], reverse=True)
+    return sorted(lista, key=lambda rez: get_pret(rez), reverse=True)
