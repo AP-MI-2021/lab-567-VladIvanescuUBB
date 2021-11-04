@@ -52,3 +52,18 @@ def ordonare_descrescator_pret(lista):
     :return: lista ordonata descrescator dupa pretul rezervarilor
     """
     return sorted(lista, key=lambda rez: get_pret(rez), reverse=True)
+
+
+def suma_pret(lista, nume):
+    """
+    functia calculeaza suma preturilor rezervarilor facute pe un nume dat
+    :param lista: lista de rezervari
+    :param nume: string
+    :return: suma preturilor rezervarilor facute pe nume
+    """
+    suma = 0
+    for rezervare in lista:
+        if get_nume(rezervare) == nume:
+            suma = suma + get_pret(rezervare)
+    return suma
+

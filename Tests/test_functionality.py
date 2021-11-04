@@ -1,6 +1,6 @@
 from Domain.rezervare import get_clasa, get_pret, get_ID
 from Logic.CRUD import adauga_rezervare
-from Logic.functionality import trece_clasa_superioara, ieftinire, pret_max_clasa, ordonare_descrescator_pret
+from Logic.functionality import trece_clasa_superioara, ieftinire, pret_max_clasa, ordonare_descrescator_pret, suma_pret
 
 
 def test_trece_clasa_superioara():
@@ -55,4 +55,18 @@ def test_ordonare_descrescator_pret():
     assert get_pret(lista[0]) == 200
     assert get_pret(lista[1]) == 150
     assert get_pret(lista[2]) == 100
+
+
+def test_suma_pret():
+    lista = []
+    lista = adauga_rezervare("1", "Vlad", "economy", 100, "da", lista)
+    lista = adauga_rezervare("2", "Vlad", "economy plus", 150, "da", lista)
+    lista = adauga_rezervare("3", "Darius", "business", 200, "da", lista)
+    lista = adauga_rezervare("4", "Darius", "business", 250, "nu", lista)
+    lista = adauga_rezervare("5", "Emma", "economy plus", 150, "da", lista)
+
+    assert suma_pret(lista, "Vlad") == 250
+    assert suma_pret(lista, "Darius") == 450
+    assert suma_pret(lista, "Emma") == 150
+
 
