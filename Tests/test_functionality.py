@@ -68,5 +68,3 @@ def test_suma_pret():
     assert suma_pret(lista, "Vlad") == 250
     assert suma_pret(lista, "Darius") == 450
     assert suma_pret(lista, "Emma") == 150
-
-
