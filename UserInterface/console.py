@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from Domain.rezervare import to_string, get_nume
 from Logic.CRUD import adauga_rezervare, sterge_rezervare, modifica_rezervare
 from Logic.functionality import trece_clasa_superioara, ieftinire, pret_max_clasa, ordonare_descrescator_pret, suma_pret
@@ -65,15 +67,15 @@ def show_all(lista):
 
 def ui_trece_clasa_superioara(lista, undo_list):
     nume = input("Dati numele: ")
-    undo_list.append(lista)
+    undo_list.append(deepcopy(lista))
     return trece_clasa_superioara(lista, nume)
 
 
 def ui_ieftinire(lista, undo_list):
     try:
+        undo_list.append(deepcopy(lista))
         procentaj = float(input("Dati procentajul: "))
         rezultat = ieftinire(lista, procentaj)
-        undo_list.append(lista)
         return rezultat
     except ValueError as ve:
         print("Eroare! ", ve)
