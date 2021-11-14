@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from Logic.CRUD import adauga_rezervare, sterge_rezervare, modifica_rezervare
 from Logic.functionality import trece_clasa_superioara, ieftinire
 from UserInterface.console import ui_pret_max_clasa, ui_ordonare_descrescator_pret, ui_suma_pret, show_all
@@ -49,14 +51,14 @@ def ui_modifica_rezervare_2(ID, nume, clasa, pret, checkin_facut, lista, undo_li
 
 
 def ui_trece_clasa_superioara_2(lista, nume, undo_list):
-    undo_list.append(lista)
+    undo_list.append(deepcopy(lista))
     return trece_clasa_superioara(lista, nume)
 
 
 def ui_ieftinire_2(lista, procentaj, undo_list):
     try:
+        undo_list.append(deepcopy(lista))
         rezultat = ieftinire(lista, procentaj)
-        undo_list.append(lista)
         return rezultat
     except ValueError as ve:
         print("Eroare! ", ve)
