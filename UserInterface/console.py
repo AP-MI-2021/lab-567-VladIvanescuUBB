@@ -163,7 +163,7 @@ def run_menu(lista):
         elif optiune == "r":
             if len(redo_list) > 0:
                 undo_list.append(lista)
-                lista = undo(redo_list)
+                lista = redo(redo_list)
             else:
                 print("Nu se poate face Redo!")
         elif optiune == "x":
